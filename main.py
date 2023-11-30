@@ -1,5 +1,6 @@
 import customtkinter
 
+
 class CalculatorApp(customtkinter.CTk):
     def __init__(self):
         super().__init__()
@@ -11,7 +12,7 @@ class CalculatorApp(customtkinter.CTk):
         self.result_var = customtkinter.StringVar()
         self.result_var.set("")
 
-        self.label = customtkinter.CTkLabel(self, textvariable=self.result_var, width=80, height=75)
+        self.label = customtkinter.CTkLabel(self, textvariable=self.result_var, width=80, height=75,font=tuple([1, 25]))
         self.label.pack(side="top")
 
         buttons = [
@@ -19,11 +20,12 @@ class CalculatorApp(customtkinter.CTk):
             ("4", 25, 200), ("5", 123, 200), ("6", 223, 200), ("-", 323, 200),
             ("1", 25, 300), ("2", 123, 300), ("3", 223, 300), ("+", 323, 300),
             ("0", 25, 400), (",", 123, 400), ("%", 223, 400), ("/", 323, 400),
-            ("Clear", 25, 500), ("Backspace", 123, 500), ("Sqrt ", 223, 500), ("=", 323, 500)
+            ("Clear", 25, 500), ("Bs", 123, 500), ("Sqrt ", 223, 500), ("=", 323, 500)
         ]
 
         for text, x, y in buttons:
             btn = customtkinter.CTkButton(self, text=text, width=80, height=75,
+                                          font=tuple([1, 25]),
                                           command=lambda t=text: self.button_callback(t))
             btn.place(x=x, y=y)
 
@@ -39,7 +41,7 @@ class CalculatorApp(customtkinter.CTk):
         elif value == "Clear":
             self.expression = ''
             self.result_var.set('')
-        elif value == "Backspace":
+        elif value == "Bs":
             self.expression = self.expression[:-1]
             self.result_var.set(self.expression)
         else:
